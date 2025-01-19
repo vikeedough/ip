@@ -18,7 +18,12 @@ public class EntryList {
 
     public void printList() {
         for(int i=0; i < this.entries.size(); i++) {
-            System.out.println((i + 1) + ": " + this.entries.get(i));
+            Entry curr = this.entries.get(i);
+            System.out.println((i + 1) + "." + curr);
         }
+    }
+
+    public Entry get(int index) {
+        return this.entries.get(index);
     }
 }
