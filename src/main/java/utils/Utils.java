@@ -14,6 +14,7 @@ public class Utils {
     private static final String TODO = "todo";
     private static final String DEADLINE = "deadline";
     private static final String EVENT = "event";
+    private static final String DELETE = "delete";
     private static final String HELP = "help";
     private static final String BYE = "bye";
 
@@ -110,6 +111,11 @@ public class Utils {
         }
         Task event = new Event(input, from, to);
         printContent(taskList.addEntry(event), taskList);
+    }
+
+    private static void deleteTask(int index, TaskList taskList) throws DuduException {
+        validateIndex(index, taskList);
+        printContent(taskList.deleteTask(index));
     }
 
     private static void validateIndex(int index, TaskList taskList) throws DuduException {
@@ -210,6 +216,14 @@ public class Utils {
                     printLine();
                     taskList.printList();
                     printLine();
+                    break;
+                case DELETE:
+                    try {
+                        int deleteIndex = Integer.parseInt(entry) - 1;
+                        deleteTask(deleteIndex, taskList);
+                    } catch (DuduException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case HELP:
                     showCommands();

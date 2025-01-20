@@ -34,9 +34,15 @@ public class TaskList {
     }
 
     public String printNumberOfTasks() {
-        String isPlural = this.tasks.size() > 1
+        String isPlural = this.tasks.size() != 1
                           ? " tasks in the list."
                           : " task in the list.";
         return "\nNow you have " + String.valueOf(this.tasks.size()) + isPlural;
+    }
+
+    public String deleteTask(int index) {
+        Task curr = this.tasks.get(index);
+        this.tasks.remove(index);
+        return "Alright! I've deleted this task:\n" + curr.toString() + printNumberOfTasks();
     }
 }
