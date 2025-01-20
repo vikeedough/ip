@@ -1,10 +1,10 @@
-package controller;
+package model;
 
-public class Entry {
+public class Task {
     private String name;
     private boolean isDone;
 
-    public Entry(String name) {
+    public Task(String name) {
         this.name = name;
         this.isDone = false;
     }

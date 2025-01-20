@@ -1,10 +1,10 @@
-import controller.EntryList;
+import model.TaskList;
 import utils.Utils;
 
 public class Dudu {
     public static void main(String[] args) {
-        EntryList entryList = new EntryList();
+        TaskList entryList = new TaskList();
         Utils.printGreeting();
-        Utils.startLoop(entryList);
+        Utils.loop(entryList);
     }
 }
