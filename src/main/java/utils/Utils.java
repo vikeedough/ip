@@ -82,7 +82,7 @@ public class Utils {
             Task curr = taskList.get(index);
             if (!curr.getIsDone()) {
                 curr.toggleDone();
-                String toPrint = "Nice! I've marked this task as done: \n" + curr;
+                String toPrint = "Nice! I've marked this task as done:\n" + curr;
                 printContent(toPrint);
             }
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
@@ -95,7 +95,7 @@ public class Utils {
             Task curr = taskList.get(index);
             if (curr.getIsDone()) {
                 curr.toggleDone();
-                String toPrint = "Alright, I've marked this task as not done yet: \n" + curr;
+                String toPrint = "Alright, I've marked this task as not done yet:\n" + curr;
                 printContent(toPrint);
             }
         } catch (IndexOutOfBoundsException | NumberFormatException e) {

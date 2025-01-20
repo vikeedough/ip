@@ -9,7 +9,7 @@ Now you have 1 task in the list.
 --------------------------------------------------------
 --------------------------------------------------------
 Alright! I've added this task:
-[D][ ] return book  (by: Sunday)
+[D][ ] return book (by: Sunday)
 Now you have 2 tasks in the list.
 --------------------------------------------------------
 --------------------------------------------------------
@@ -17,6 +17,34 @@ Alright! I've added this task:
 [E][ ] groupwork (from: Thurs 4pm to: 6pm)
 Now you have 3 tasks in the list.
 --------------------------------------------------------
+--------------------------------------------------------
+Nice! I've marked this task as done:
+[T][X] borrow book
+--------------------------------------------------------
+--------------------------------------------------------
+Nice! I've marked this task as done:
+[E][X] groupwork (from: Thurs 4pm to: 6pm)
+--------------------------------------------------------
+--------------------------------------------------------
+1.[T][X] borrow book
+2.[D][ ] return book (by: Sunday)
+3.[E][X] groupwork (from: Thurs 4pm to: 6pm)
+--------------------------------------------------------
+--------------------------------------------------------
+Alright, I've marked this task as not done yet:
+[T][ ] borrow book
+--------------------------------------------------------
+--------------------------------------------------------
+Nice! I've marked this task as done:
+[D][X] return book (by: Sunday)
+--------------------------------------------------------
+--------------------------------------------------------
+1.[T][ ] borrow book
+2.[D][X] return book (by: Sunday)
+3.[E][X] groupwork (from: Thurs 4pm to: 6pm)
+--------------------------------------------------------
+Please key in a valid task number!
+Please key in a valid task number!
 --------------------------------------------------------
 See you next time!
 --------------------------------------------------------
