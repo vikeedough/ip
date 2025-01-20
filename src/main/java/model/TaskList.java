@@ -11,7 +11,7 @@ public class TaskList {
 
     public String addEntry(Task task) {
         this.tasks.add(task);
-        return "Alright! I've added this task: \n" + task.toString() + printNumberOfTasks();
+        return "Alright! I've added this task:\n" + task.toString() + printNumberOfTasks();
     }
 
     public void printList() {
