@@ -15,10 +15,18 @@ public class TaskList {
     }
 
     public void printList() {
-        for(int i=0; i < this.tasks.size(); i++) {
-            Task curr = this.tasks.get(i);
-            System.out.println((i + 1) + "." + curr);
+        if (this.tasks.isEmpty()) {
+            System.out.println("You have no tasks to show.");
+        } else {
+            for(int i=0; i < this.tasks.size(); i++) {
+                Task curr = this.tasks.get(i);
+                System.out.println((i + 1) + "." + curr);
+            }
         }
+    }
+
+    public int getSize() {
+        return this.tasks.size();
     }
 
     public Task get(int index) {
