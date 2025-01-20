@@ -11,7 +11,7 @@ public class TaskList {
 
     public String addEntry(Task task) {
         this.tasks.add(task);
-        return "added: " + task.getName();
+        return "Alright! I've added this task: \n" + task.toString() + printNumberOfTasks();
     }
 
     public void printList() {
@@ -23,5 +23,12 @@ public class TaskList {
 
     public Task get(int index) {
         return this.tasks.get(index);
+    }
+
+    public String printNumberOfTasks() {
+        String isPlural = this.tasks.size() > 1
+                          ? " tasks in the list."
+                          : " task in the list.";
+        return "\nNow you have " + String.valueOf(this.tasks.size()) + isPlural;
     }
 }

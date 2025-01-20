@@ -1,7 +1,6 @@
 package utils;
 
-import model.Task;
-import model.TaskList;
+import model.*;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -12,6 +11,9 @@ public class Utils {
     private static final String LIST = "list";
     private static final String MARK = "mark";
     private static final String UNMARK = "unmark";
+    private static final String TODO = "todo";
+    private static final String DEADLINE = "deadline";
+    private static final String EVENT = "event";
     private static final String BYE = "bye";
 
     private static void printLine() {
@@ -39,6 +41,12 @@ public class Utils {
         printLine();
     }
 
+    public static void printContent(String input, TaskList taskList) {
+        printLine();
+        System.out.println(input);
+        printLine();
+    }
+
     public static String getInput() {
         return scanner.nextLine();
     }
@@ -51,7 +59,22 @@ public class Utils {
 
     private static void addEntry(String input, TaskList taskList) {
         Task task = new Task(input);
-        printContent(taskList.addEntry(task));
+        printContent(taskList.addEntry(task), taskList);
+    }
+
+    private static void addTodo(String input, TaskList taskList) {
+        Task todo = new Todo(input);
+        printContent(taskList.addEntry(todo), taskList);
+    }
+
+    private static void addDeadline(String input, String by, TaskList taskList) {
+        Task deadline = new Deadline(input, by);
+        printContent(taskList.addEntry(deadline), taskList);
+    }
+
+    private static void addEvent(String input, String from, String to, TaskList taskList) {
+        Task event = new Event(input, from, to);
+        printContent(taskList.addEntry(event), taskList);
     }
 
     private static void markCommand(int index, TaskList taskList) {
@@ -86,14 +109,27 @@ public class Utils {
             if (input.contains(" ")) {
                 String[] parts = input.split(" ", 2);
                 String command = parts[0];
-                int argument = Integer.parseInt(parts[1]) - 1;
+                String entry = parts[1];
 
                 switch (command) {
                     case MARK:
-                        markCommand(argument, taskList);
+                        int markIndex = Integer.parseInt(entry) - 1;
+                        markCommand(markIndex, taskList);
                         break;
                     case UNMARK:
-                        unmarkCommand(argument, taskList);
+                        int unmarkIndex = Integer.parseInt(entry) - 1;
+                        unmarkCommand(unmarkIndex, taskList);
+                        break;
+                    case TODO:
+                        addTodo(entry, taskList);
+                        break;
+                    case DEADLINE:
+                        String[] deadlineParts = entry.split("/by ");
+                        addDeadline(deadlineParts[0], deadlineParts[1], taskList);
+                        break;
+                    case EVENT:
+                        String[] eventParts = entry.split("/from | /to", 3);
+                        addEvent(eventParts[0], eventParts[1], eventParts[2], taskList);
                         break;
                     default:
                         break;
