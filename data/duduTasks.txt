@@ -1,4 +1,5 @@
-T | Done | SPH2001 Ethics Course
-D | Not Done | SPH3107 R Tutorial | Monday
+T | Done | Yo Mama
+T | Not Done | SPH2001 Ethics Course
+D | Done | SPH3107 R Tutorial | Monday
 E | Not Done | SPH3107 Lecture | 9am | 12pm
 T | Done | CS2109S PS2
