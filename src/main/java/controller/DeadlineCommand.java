@@ -7,6 +7,9 @@ import model.TaskList;
 import utils.DuduException;
 import utils.Ui;
 
+import java.io.File;
+import java.io.IOException;
+
 public class DeadlineCommand implements Command {
     private final String description;
 
@@ -21,20 +24,23 @@ public class DeadlineCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList tasks) throws DuduException {
+    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             String[] deadlineParts = description.split("/by ");
             if (deadlineParts.length < 2) {
                 throw new DuduException("Please enter a deadline using the /by keyword.");
             }
-            validateDescription(deadlineParts[0]);
+            validateDescription(deadlineParts[0].trim());
             if (deadlineParts[1].trim().isEmpty()) {
                 throw new DuduException("Please enter a deadline using the /by keyword.");
             }
-            Task deadline = new Deadline(deadlineParts[0], deadlineParts[1]);
+            Task deadline = new Deadline(deadlineParts[0].trim(), deadlineParts[1]);
             Ui.printContent(tasks.addEntry(deadline));
+            FileOperation.overwriteFile(cachedTasks, tasks);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

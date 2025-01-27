@@ -6,6 +6,9 @@ import model.Todo;
 import utils.DuduException;
 import utils.Ui;
 
+import java.io.File;
+import java.io.IOException;
+
 public class TodoCommand implements Command {
 
     private final String description;
@@ -21,13 +24,16 @@ public class TodoCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList tasks) throws DuduException {
+    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             validateDescription(description);
-            Task todo = new Todo(description);
+            Task todo = new Todo(description.trim());
             Ui.printContent(tasks.addEntry(todo));
+            FileOperation.overwriteFile(cachedTasks, tasks);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

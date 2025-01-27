@@ -4,6 +4,9 @@ import model.TaskList;
 import utils.DuduException;
 import utils.Ui;
 
+import java.io.File;
+import java.io.IOException;
+
 public class DeleteCommand implements Command {
 
     private final String description;
@@ -19,13 +22,16 @@ public class DeleteCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList tasks) throws DuduException {
+    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             int index = Integer.parseInt(description) - 1;
             validateIndex(index, tasks);
             Ui.printContent(tasks.deleteTask(index));
+            FileOperation.overwriteFile(cachedTasks, tasks);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -5,6 +5,9 @@ import model.TaskList;
 import utils.DuduException;
 import utils.Ui;
 
+import java.io.File;
+import java.io.IOException;
+
 public class UnmarkCommand implements Command {
     private final String description;
 
@@ -19,7 +22,7 @@ public class UnmarkCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList tasks) throws DuduException {
+    public void execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
         int index = Integer.parseInt(description) - 1;
         validateIndex(index, tasks);
         Task curr = tasks.get(index);
@@ -27,6 +30,7 @@ public class UnmarkCommand implements Command {
             curr.toggleDone();
             String toPrint = "Alright, I've marked this task as not done yet:\n" + curr;
             Ui.printContent(toPrint);
+            FileOperation.overwriteFile(cachedTasks, tasks);
         } else {
             throw new DuduException("Task is already marked as not done!");
 

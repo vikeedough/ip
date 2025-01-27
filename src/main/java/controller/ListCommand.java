@@ -5,12 +5,13 @@ import model.TaskList;
 import utils.DuduException;
 import utils.Ui;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ListCommand implements Command {
 
     @Override
-    public void execute(TaskList tasks) throws DuduException {
+    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         ArrayList<Task> tasksToPrint = tasks.getAllTasks();
         Ui.printLine();
         if (tasksToPrint.isEmpty()) {
