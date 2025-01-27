@@ -20,6 +20,8 @@ public class FileOperation {
     public static File loadFile() throws IOException {
         File file = new File("./data/duduTasks.txt");
 
+        file.getParentFile().mkdirs();
+
         if (file.createNewFile()) {
             Ui.printContent("No tasks file found. Creating a new tasks file at: " + file.getAbsolutePath());
         } else {
