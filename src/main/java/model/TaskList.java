@@ -14,15 +14,8 @@ public class TaskList {
         return "Alright! I've added this task:\n" + task.toString() + printNumberOfTasks();
     }
 
-    public void printList() {
-        if (this.tasks.isEmpty()) {
-            System.out.println("You have no tasks to show.");
-        } else {
-            for(int i=0; i < this.tasks.size(); i++) {
-                Task curr = this.tasks.get(i);
-                System.out.println((i + 1) + "." + curr);
-            }
-        }
+    public ArrayList<Task> getAllTasks() {
+        return tasks;
     }
 
     public int getSize() {

@@ -2,7 +2,7 @@ package model;
 
 public class Deadline extends Task{
 
-    private String by;
+    private final String by;
 
     public Deadline(String name, String by) {
         super(name);

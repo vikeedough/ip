@@ -1,0 +1,40 @@
+package controller;
+
+import model.Task;
+import model.TaskList;
+import utils.DuduException;
+import utils.Ui;
+
+public class UnmarkCommand implements Command {
+    private final String description;
+
+    public UnmarkCommand(String description) {
+        this.description = description;
+    }
+
+    private static void validateIndex(int index, TaskList taskList) throws DuduException {
+        if (index < 0 || index >= taskList.getSize()) {
+            throw new DuduException("Invalid task number! Please enter a valid task number.");
+        }
+    }
+
+    @Override
+    public void execute(TaskList tasks) throws DuduException {
+        int index = Integer.parseInt(description) - 1;
+        validateIndex(index, tasks);
+        Task curr = tasks.get(index);
+        if (curr.getIsDone()) {
+            curr.toggleDone();
+            String toPrint = "Alright, I've marked this task as not done yet:\n" + curr;
+            Ui.printContent(toPrint);
+        } else {
+            throw new DuduException("Task is already marked as not done!");
+
+        }
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
+}

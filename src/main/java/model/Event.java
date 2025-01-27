@@ -2,8 +2,8 @@ package model;
 
 public class Event extends Task{
 
-    private String from;
-    private String to;
+    private final String from;
+    private final String to;
 
     public Event(String name, String from, String to) {
         super(name);
