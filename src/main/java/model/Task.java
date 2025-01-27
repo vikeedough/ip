@@ -26,6 +26,6 @@ public class Task {
         String status = this.isDone
                         ? "[X]"
                         : "[ ]";
-        return status + " " + this.name;
+        return status + " " + this.name + " ";
     }
 }

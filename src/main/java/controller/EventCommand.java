@@ -7,6 +7,9 @@ import model.TaskList;
 import utils.DuduException;
 import utils.Ui;
 
+import java.io.File;
+import java.io.IOException;
+
 public class EventCommand implements Command {
     private final String description;
 
@@ -21,7 +24,7 @@ public class EventCommand implements Command {
     }
 
     @Override
-    public void execute(TaskList tasks) throws DuduException {
+    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             String[] eventParts = description.split("/from | /to", 3);
             if (eventParts.length < 3) {
@@ -32,10 +35,13 @@ public class EventCommand implements Command {
             if (eventParts[1].trim().isEmpty() || eventParts[2].trim().isEmpty()) {
                 throw new DuduException("Please enter a duration for this event using the /from and /to keywords.");
             }
-            Task event = new Event(eventParts[0], eventParts[1], eventParts[2]);
+            Task event = new Event(eventParts[0].trim(), eventParts[1], eventParts[2]);
             Ui.printContent(tasks.addEntry(event));
+            FileOperation.overwriteFile(cachedTasks, tasks);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

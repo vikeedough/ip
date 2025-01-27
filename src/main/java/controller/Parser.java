@@ -17,6 +17,7 @@ public class Parser {
         String[] parts = input.split(" ", 2);
         String command = parts[0];
         String description = (parts.length > 1) ? parts[1] : "";
+        description = description.trim();
 
         switch (command) {
         case MARK:
