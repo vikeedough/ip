@@ -1,6 +1,6 @@
-package model;
+package dudu.model;
 
-import utils.DateTimeParser;
+import dudu.utils.DateTimeParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

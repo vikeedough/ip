@@ -1,10 +1,10 @@
-package controller;
+package dudu.controller;
 
-import model.Task;
-import model.TaskList;
-import model.Todo;
-import utils.DuduException;
-import utils.Ui;
+import dudu.model.Task;
+import dudu.model.TaskList;
+import dudu.model.Todo;
+import dudu.utils.DuduException;
+import dudu.utils.Ui;
 
 import java.io.File;
 import java.io.IOException;

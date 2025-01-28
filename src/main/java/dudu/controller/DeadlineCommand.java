@@ -1,17 +1,16 @@
-package controller;
+package dudu.controller;
 
-import model.Deadline;
-import model.Task;
-import model.TaskList;
+import dudu.model.Deadline;
+import dudu.model.Task;
+import dudu.model.TaskList;
 
-import utils.DateTimeParser;
-import utils.DuduException;
-import utils.Ui;
+import dudu.utils.DateTimeParser;
+import dudu.utils.DuduException;
+import dudu.utils.Ui;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class DeadlineCommand implements Command {
     private final String description;

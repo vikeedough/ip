@@ -1,7 +1,7 @@
-package controller;
+package dudu.controller;
 
-import model.TaskList;
-import utils.Ui;
+import dudu.model.TaskList;
+import dudu.utils.Ui;
 
 import java.io.File;
 
