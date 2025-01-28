@@ -11,10 +11,15 @@ import java.io.File;
 import java.io.IOException;
 
 public class Dudu {
-    public static void main(String[] args) throws DuduException, IOException {
-        File cachedTasks = FileOperation.loadFile();
-        TaskList tasks = new TaskList();
 
+    private final TaskList tasks;
+
+    public Dudu() {
+        this.tasks = new TaskList();
+    }
+
+    public void run() throws DuduException, IOException {
+        File cachedTasks = FileOperation.loadFile();
         FileOperation.readTasksFromFile(cachedTasks, tasks);
 
         Ui.printDudu();
@@ -31,6 +36,15 @@ public class Dudu {
             } catch (DuduException e) {
                 Ui.printContentWithoutLines(e.getMessage());
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        Dudu dudu = new Dudu();
+        try {
+            dudu.run();
+        } catch (DuduException | IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
