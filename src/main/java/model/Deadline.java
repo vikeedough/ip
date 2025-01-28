@@ -1,20 +1,26 @@
 package model;
 
+import utils.DateTimeParser;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task{
 
-    private final String by;
+    private final LocalDateTime by;
 
-    public Deadline(String name, String by) {
+    public Deadline(String name, LocalDateTime by) {
         super(name);
         this.by = by;
     }
 
-    public String getBy() {
+    public LocalDateTime getBy() {
         return this.by;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by + ")";
+        DateTimeFormatter formatter = DateTimeParser.checkFormat(by);
+        return "[D]" + super.toString() + "(by: " + by.format(formatter) + ")";
     }
 }

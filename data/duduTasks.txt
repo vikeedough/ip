@@ -1,5 +1,5 @@
-T | Done | Yo Mama
-T | Not Done | SPH2001 Ethics Course
-D | Done | SPH3107 R Tutorial | Monday
-E | Not Done | SPH3107 Lecture | 9am | 12pm
-T | Done | CS2109S PS2
+D | Done | return book | 2019-12-09T18:00
+D | Not Done | yo papa | 2019-12-09T20:00
+D | Not Done | yo grandma | 2019-12-09T00:00
+D | Done | Yasmeen's Birthday | 2025-07-15T00:00
+E | Done | Steamboat | 2025-01-28T18:00 | 2025-01-28T22:00

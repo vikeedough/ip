@@ -6,6 +6,7 @@ import model.Todo;
 import model.Deadline;
 import model.Event;
 
+import utils.DateTimeParser;
 import utils.DuduException;
 import utils.Ui;
 
@@ -13,6 +14,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Scanner;
 
 public class FileOperation {
@@ -53,7 +56,7 @@ public class FileOperation {
             if (parts.length < 4) {
                 throw new DuduException("Invalid data for Deadline task in file.");
             }
-            String by = parts[3];
+            LocalDateTime by = DateTimeParser.parseFromFile(parts[3].trim());
             Deadline deadline = new Deadline(name, by);
             if (done.equals("Done")) {
                 deadline.toggleDone();
@@ -63,8 +66,8 @@ public class FileOperation {
             if (parts.length < 5) {
                 throw new DuduException("Invalid data for Event task in file.");
             }
-            String from = parts[3];
-            String to = parts[4];
+            LocalDateTime from = DateTimeParser.parseFromFile(parts[3].trim());
+            LocalDateTime to = DateTimeParser.parseFromFile(parts[4].trim());
             Event event = new Event(name, from, to);
             if (done.equals("Done")) {
                 event.toggleDone();

@@ -4,11 +4,14 @@ import model.Deadline;
 import model.Task;
 import model.TaskList;
 
+import utils.DateTimeParser;
 import utils.DuduException;
 import utils.Ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class DeadlineCommand implements Command {
     private final String description;
@@ -34,7 +37,10 @@ public class DeadlineCommand implements Command {
             if (deadlineParts[1].trim().isEmpty()) {
                 throw new DuduException("Please enter a deadline using the /by keyword.");
             }
-            Task deadline = new Deadline(deadlineParts[0].trim(), deadlineParts[1]);
+
+            LocalDateTime parsedDateTime = DateTimeParser.parseDateTime(deadlineParts[1].trim());
+
+            Task deadline = new Deadline(deadlineParts[0].trim(), parsedDateTime);
             Ui.printContent(tasks.addEntry(deadline));
             FileOperation.overwriteFile(cachedTasks, tasks);
         } catch (DuduException e) {
