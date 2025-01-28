@@ -1,4 +1,4 @@
-package utils;
+package dudu.utils;
 
 public class DuduException extends Exception {
     public DuduException(String message) {

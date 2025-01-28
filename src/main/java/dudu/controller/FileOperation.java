@@ -1,21 +1,20 @@
-package controller;
+package dudu.controller;
 
-import model.Task;
-import model.TaskList;
-import model.Todo;
-import model.Deadline;
-import model.Event;
+import dudu.model.Task;
+import dudu.model.TaskList;
+import dudu.model.Todo;
+import dudu.model.Deadline;
+import dudu.model.Event;
 
-import utils.DateTimeParser;
-import utils.DuduException;
-import utils.Ui;
+import dudu.utils.DateTimeParser;
+import dudu.utils.DuduException;
+import dudu.utils.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Scanner;
 
 public class FileOperation {

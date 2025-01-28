@@ -1,6 +1,6 @@
-todo borrow book
-deadline return book /by Sunday
-event groupwork /from Thurs 4pm /to 6pm
+todo Yasmeen's Birthday
+deadline CS2109S PS1 /by 1/2/2025 1600
+event Answering Techniques BBQ /from 1/2/2025 1800 /to 1/2/2025 2300
 mark 1
 mark 3
 list

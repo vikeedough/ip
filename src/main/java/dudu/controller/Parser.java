@@ -1,6 +1,6 @@
-package controller;
+package dudu.controller;
 
-import utils.DuduException;
+import dudu.utils.DuduException;
 
 public class Parser {
     private static final String LIST = "list";

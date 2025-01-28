@@ -1,4 +1,4 @@
-package model;
+package dudu.model;
 
 import java.util.ArrayList;
 

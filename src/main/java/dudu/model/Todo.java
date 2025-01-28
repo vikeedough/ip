@@ -1,4 +1,4 @@
-package model;
+package dudu.model;
 
 public class Todo extends Task {
 

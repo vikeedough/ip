@@ -1,12 +1,11 @@
-package controller;
+package dudu.controller;
 
-import model.Deadline;
-import model.Event;
-import model.Task;
-import model.TaskList;
-import utils.DateTimeParser;
-import utils.DuduException;
-import utils.Ui;
+import dudu.model.Event;
+import dudu.model.Task;
+import dudu.model.TaskList;
+import dudu.utils.DateTimeParser;
+import dudu.utils.DuduException;
+import dudu.utils.Ui;
 
 import java.io.File;
 import java.io.IOException;

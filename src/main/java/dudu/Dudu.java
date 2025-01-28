@@ -1,11 +1,13 @@
-import controller.Command;
-import controller.FileOperation;
-import controller.Parser;
+package dudu;
 
-import model.TaskList;
+import dudu.controller.Command;
+import dudu.controller.FileOperation;
+import dudu.controller.Parser;
 
-import utils.DuduException;
-import utils.Ui;
+import dudu.model.TaskList;
+
+import dudu.utils.DuduException;
+import dudu.utils.Ui;
 
 import java.io.File;
 import java.io.IOException;
