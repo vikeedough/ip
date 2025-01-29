@@ -3,4 +3,4 @@ D | Not Done | yo papa | 2019-12-09T20:00
 D | Not Done | yo grandma | 2019-12-09T00:00
 D | Not Done | Yasmeen's Birthday | 2025-07-15T00:00
 E | Done | Steamboat | 2025-01-28T18:00 | 2025-01-28T22:00
-E | Done | CS2103T ip Week 3 | 2025-01-28T15:00 | 2025-01-31T16:00
+E | Not Done | CS2103T ip Week 3 | 2025-01-28T15:00 | 2025-01-31T16:00

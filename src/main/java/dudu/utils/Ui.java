@@ -20,13 +20,20 @@ public class Ui {
         System.out.println("Adds a ToDo Task to your list.");
         printLine();
         System.out.println("deadline <title> /by <date/time>");
+        System.out.println("<date/time> is in the format of dd/mm/yyyy hhmm in 24 hour format.");
+        System.out.println("<date/time> can also be in the format of dd/mm/yyyy.");
         System.out.println("Adds a Deadline Task to your list.");
         printLine();
         System.out.println("event <title> /from <date/time> /to <date/time>");
+        System.out.println("<date/time> is in the format of dd/mm/yyyy hhmm in 24 hour format.");
+        System.out.println("<date/time> can also be in the format of dd/mm/yyyy.");
         System.out.println("Adds an Event Task to your list.");
         printLine();
         System.out.println("list");
         System.out.println("Displays your current list of tasks.");
+        printLine();
+        System.out.println("find <keyword>");
+        System.out.println("Shows a list of tasks with the given keyword.");
         printLine();
         System.out.println("mark <taskIndex>");
         System.out.println("Marks the indicated task as done.");
@@ -38,7 +45,7 @@ public class Ui {
         System.out.println("Shows the commands available.");
         printLine();
         System.out.println("bye");
-        System.out.println("Dismisses dudu.Dudu.");
+        System.out.println("Dismisses Dudu.");
         printLine();
     }
 
