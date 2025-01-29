@@ -56,7 +56,7 @@ public class Ui {
 
     public static void printGreeting() {
         printLine();
-        System.out.println("Hello! I'm dudu.Dudu!");
+        System.out.println("Hello! I'm Dudu!");
         System.out.println("How may I assist you today?");
         printLine();
     }
