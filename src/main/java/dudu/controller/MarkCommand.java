@@ -13,6 +13,11 @@ public class MarkCommand implements Command{
 
     private final String description;
 
+    /**
+     * Creates MarkCommand object.
+     *
+     * @param description Arguments of command.
+     */
     public MarkCommand(String description) {
         this.description = description;
     }
@@ -22,6 +27,15 @@ public class MarkCommand implements Command{
             throw new DuduException("Invalid task number! Please enter a valid task number.");
         }
     }
+
+    /**
+     * Marks selected task as done.
+     *
+     * @param tasks Current list of tasks.
+     * @param cachedTasks Save file.
+     * @throws DuduException If task has already been marked as done.
+     * @throws IOException If write operation is interrupted.
+     */
     @Override
     public void execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
         int index = Integer.parseInt(description) - 1;
@@ -37,6 +51,11 @@ public class MarkCommand implements Command{
         }
     }
 
+    /**
+     * Returns false as it is not an exit command.
+     *
+     * @return False.
+     */
     @Override
     public boolean isExit() {
         return false;

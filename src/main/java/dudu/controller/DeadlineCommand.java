@@ -15,6 +15,11 @@ import java.time.LocalDateTime;
 public class DeadlineCommand implements Command {
     private final String description;
 
+    /**
+     * Creates DeadlineCommand object.
+     *
+     * @param description Arguments of command.
+     */
     public DeadlineCommand(String description) {
         this.description = description;
     }
@@ -25,6 +30,13 @@ public class DeadlineCommand implements Command {
         }
     }
 
+    /**
+     * Adds new Deadline Task to current list and overwrites save file.
+     *
+     * @param tasks Current Tasks in the list.
+     * @param cachedTasks Save file.
+     * @throws DuduException If no deadline is given with the /by keyword.
+     */
     @Override
     public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
@@ -49,6 +61,11 @@ public class DeadlineCommand implements Command {
         }
     }
 
+    /**
+     * Returns false as it is not an exit command.
+     *
+     * @return False.
+     */
     @Override
     public boolean isExit() {
         return false;

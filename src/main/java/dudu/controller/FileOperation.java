@@ -19,6 +19,13 @@ import java.util.Scanner;
 
 public class FileOperation {
 
+    /**
+     * Returns the local save file.
+     * If no local save file is found, create a new one.
+     *
+     * @return Save file.
+     * @throws IOException If error occurs while retrieving the file.
+     */
     public static File loadFile() throws IOException {
         File file = new File("./data/duduTasks.txt");
 
@@ -33,6 +40,13 @@ public class FileOperation {
         return file;
     }
 
+    /**
+     * Parses a line from the save file and adds it to the current list of tasks.
+     *
+     * @param line Line currently being read from save file.
+     * @return Appropriate Task object.
+     * @throws DuduException If invalid data is received from the save file.
+     */
     public static Task parseFile(String line) throws DuduException {
         String[] parts = line.split("\\|");
 
@@ -77,6 +91,14 @@ public class FileOperation {
         }
     }
 
+    /**
+     * Reads tasks from save file line by line.
+     *
+     * @param file Save file.
+     * @param tasks Current list of tasks.
+     * @throws FileNotFoundException If save file is not found.
+     * @throws DuduException If invalid data is received from the save file.
+     */
     public static void readTasksFromFile(File file, TaskList tasks) throws FileNotFoundException, DuduException {
         Scanner sc = new Scanner(file);
         while (sc.hasNextLine()) {
@@ -85,16 +107,6 @@ public class FileOperation {
             tasks.addEntry(task);
         }
         sc.close();
-    }
-
-    public static void addToFile(String filePath, String toAppend) throws IOException {
-        try {
-            FileWriter file = new FileWriter(filePath, true);
-            file.write(toAppend);
-            file.close();
-        } catch (IOException e) {
-            Ui.printContentWithoutLines(e.getMessage());
-        }
     }
 
     private static String taskToString(Task task) throws DuduException {
@@ -121,6 +133,14 @@ public class FileOperation {
         }
     }
 
+    /**
+     * Overwrites save file with addition, deletion or modification of tasks.
+     *
+     * @param file Save file.
+     * @param tasks Current list of tasks.
+     * @throws IOException If error occurs while writing into the save file.
+     * @throws DuduException If task is not recognized.
+     */
     public static void overwriteFile(File file, TaskList tasks) throws IOException, DuduException {
         FileWriter fw = new FileWriter(file, false);
         for (Task task : tasks.getAllTasks()) {

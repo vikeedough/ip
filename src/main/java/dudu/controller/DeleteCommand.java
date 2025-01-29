@@ -12,6 +12,11 @@ public class DeleteCommand implements Command {
 
     private final String description;
 
+    /**
+     * Creates DeleteCommand object.
+     *
+     * @param description Arguments of command.
+     */
     public DeleteCommand(String description) {
         this.description = description;
     }
@@ -22,6 +27,13 @@ public class DeleteCommand implements Command {
         }
     }
 
+    /**
+     * Deletes selected task from the current tasks and overwrites the save file.
+     *
+     * @param tasks Current Tasks in the list.
+     * @param cachedTasks Save file.
+     * @throws DuduException If task number is out of bounds or file operation does not work.
+     */
     @Override
     public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
@@ -36,6 +48,11 @@ public class DeleteCommand implements Command {
         }
     }
 
+    /**
+     * Returns false as it is not an exit command.
+     *
+     * @return False.
+     */
     @Override
     public boolean isExit() {
         return false;

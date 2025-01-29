@@ -7,9 +7,18 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task{
 
+    /** Start of event **/
     private final LocalDateTime from;
+    /** End of event **/
     private final LocalDateTime to;
 
+    /**
+     * Creates Event object.
+     *
+     * @param name Title of task.
+     * @param from Start of event.
+     * @param to End of event.
+     */
     public Event(String name, LocalDateTime from, LocalDateTime to) {
         super(name);
         this.from = from;
@@ -24,6 +33,11 @@ public class Event extends Task{
         return this.to;
     }
 
+    /**
+     * Returns event task in String format.
+     *
+     * @return Line with status, title and duration of task.
+     */
     @Override
     public String toString() {
         DateTimeFormatter fromFormatter = DateTimeParser.checkFormat(from);

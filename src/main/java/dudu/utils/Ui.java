@@ -6,14 +6,22 @@ public class Ui {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Receives input from the user.
+     *
+     * @return Next line inputted by the user.
+     */
     public static String getInput() {
         return scanner.nextLine();
     }
 
+    /** Prints a line. **/
     public static void printLine() {
         System.out.println("------------------------" +
                 "--------------------------------");
     }
+
+    /** Prints the list of commands available to the user. **/
     public static void printCommands() {
         printLine();
         System.out.println("todo <title>");
@@ -49,6 +57,7 @@ public class Ui {
         printLine();
     }
 
+    /** Prints the Dudu logo. **/
     public static void printDudu() {
         String dudu =
                 "  ____  _    _ ____  _    _\n" +
@@ -59,8 +68,7 @@ public class Ui {
         System.out.println(dudu);
     }
 
-
-
+    /** Prints greeting message. **/
     public static void printGreeting() {
         printLine();
         System.out.println("Hello! I'm Dudu!");
@@ -68,16 +76,19 @@ public class Ui {
         printLine();
     }
 
+    /** Prints exit message. **/
     public static void printExit() {
         printLine();
         System.out.println("See you next time!");
         printLine();
     }
 
+    /** Prints given content without any border. **/
     public static void printContentWithoutLines(String input) {
         System.out.println(input);
     }
 
+    /** Prints given content with borders. **/
     public static void printContent(String input) {
         printLine();
         System.out.println(input);

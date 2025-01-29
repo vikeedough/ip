@@ -1,7 +1,5 @@
 package dudu.controller;
 
-import dudu.utils.DuduException;
-
 public class Parser {
     private static final String LIST = "list";
     private static final String MARK = "mark";
@@ -13,7 +11,14 @@ public class Parser {
     private static final String DELETE = "delete";
     private static final String HELP = "help";
     private static final String BYE = "bye";
-    public static Command parse(String fullCommand) throws DuduException {
+
+    /**
+     * Returns the appropriate Command object.
+     *
+     * @param fullCommand Command and its arguments.
+     * @return Command object.
+     */
+    public static Command parse(String fullCommand) {
         String input = fullCommand.trim();
         String[] parts = input.split(" ", 2);
         String command = parts[0];

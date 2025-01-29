@@ -7,6 +7,14 @@ import java.time.format.DateTimeFormatter;
 
 public class DateTimeParser {
 
+    /**
+     * Returns parsed date and time from command arguments.
+     * If only date is given, the parsed time will be midnight.
+     *
+     * @param input Date and time.
+     * @return Parsed date and time in LocalDateTime.
+     * @throws DuduException If date and time given is in the incorrect format.
+     */
     public static LocalDateTime parseDateTime(String input) throws DuduException {
         DateTimeFormatter formatter;
         LocalDateTime dateTime;
@@ -26,10 +34,23 @@ public class DateTimeParser {
         return dateTime;
     }
 
+    /**
+     * Returns parsed date and time from save file.
+     *
+     * @param input Date and time.
+     * @return Parsed date and time in LocalDateTime.
+     */
     public static LocalDateTime parseFromFile(String input) {
         return LocalDateTime.parse(input);
     }
 
+    /**
+     * Returns DateTimeFormat according to input given.
+     * If only time given is midnight, only the date will be printed.
+     *
+     * @param dateTime Date and time in LocalDateTime.
+     * @return DateTimeFormat to be printed.
+     */
     public static DateTimeFormatter checkFormat(LocalDateTime dateTime) {
         if (dateTime.getHour() == 0 && dateTime.getMinute() == 0) {
             return DateTimeFormatter.ofPattern("MMM dd yyyy");
