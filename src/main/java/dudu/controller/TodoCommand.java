@@ -13,6 +13,11 @@ public class TodoCommand implements Command {
 
     private final String description;
 
+    /**
+     * Creates TodoCommand object.
+     *
+     * @param description Arguments of command.
+     */
     public TodoCommand(String description) {
         this.description = description;
     }
@@ -23,6 +28,13 @@ public class TodoCommand implements Command {
         }
     }
 
+    /**
+     * Adds new Todo Task to current list and overwrites save file.
+     *
+     * @param tasks Current list of tasks.
+     * @param cachedTasks Save file.
+     * @throws DuduException If any unexpected error occurs.
+     */
     @Override
     public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
@@ -37,6 +49,11 @@ public class TodoCommand implements Command {
         }
     }
 
+    /**
+     * Returns false as it is not an exit command.
+     *
+     * @return False.
+     */
     @Override
     public boolean isExit() {
         return false;

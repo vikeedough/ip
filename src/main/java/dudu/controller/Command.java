@@ -6,7 +6,7 @@ import dudu.utils.DuduException;
 import java.io.File;
 import java.io.IOException;
 
-public abstract interface Command {
+public interface Command {
     void execute(TaskList tasks, File cachedTasks) throws DuduException, IOException;
     boolean isExit();
 }

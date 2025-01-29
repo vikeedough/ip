@@ -16,10 +16,17 @@ public class Dudu {
 
     private final TaskList tasks;
 
+    /** Creates Dudu object. **/
     public Dudu() {
         this.tasks = new TaskList();
     }
 
+    /**
+     * Runs the main Dudu program.
+     *
+     * @throws DuduException If unexpected errors are thrown.
+     * @throws IOException If write operations are interrupted.
+     */
     public void run() throws DuduException, IOException {
         File cachedTasks = FileOperation.loadFile();
         FileOperation.readTasksFromFile(cachedTasks, tasks);

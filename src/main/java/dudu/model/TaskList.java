@@ -3,16 +3,31 @@ package dudu.model;
 import java.util.ArrayList;
 
 public class TaskList {
+    /** Current list of tasks **/
     private ArrayList<Task> tasks;
 
+    /** Creates TaskList object. **/
     public TaskList() {
         this.tasks = new ArrayList<Task>();
     }
+
+    /**
+     * Adds a new entry to the current list of tasks.
+     *
+     * @param task Current entry to be added.
+     * @return String containing entry added and the current number of tasks in the list.
+     */
 
     public String addEntry(Task task) {
         this.tasks.add(task);
         return "Alright! I've added this task:\n" + task.toString() + printNumberOfTasks();
     }
+
+    /**
+     * Returns all the tasks in the list.
+     *
+     * @return The tasks in the list.
+     */
 
     public ArrayList<Task> getAllTasks() {
         return tasks;
@@ -26,6 +41,11 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
+    /**
+     * Returns the current number of tasks in the list.
+     *
+     * @return Current number of tasks.
+     */
     public String printNumberOfTasks() {
         String isPlural = this.tasks.size() != 1
                           ? " tasks in the list."
@@ -33,6 +53,12 @@ public class TaskList {
         return "\nNow you have " + String.valueOf(this.tasks.size()) + isPlural;
     }
 
+    /**
+     * Deletes task with indicated index.
+     *
+     * @param index Number of task to be deleted.
+     * @return String containing task to be deleted and the current number of tasks in the list.
+     */
     public String deleteTask(int index) {
         Task curr = this.tasks.get(index);
         this.tasks.remove(index);

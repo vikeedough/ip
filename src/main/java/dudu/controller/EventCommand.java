@@ -14,6 +14,11 @@ import java.time.LocalDateTime;
 public class EventCommand implements Command {
     private final String description;
 
+    /**
+     * Creates EventCommand object.
+     *
+     * @param description Arguments of command.
+     */
     public EventCommand(String description) {
         this.description = description;
     }
@@ -24,6 +29,13 @@ public class EventCommand implements Command {
         }
     }
 
+    /**
+     * Adds new Event Task to current list and overwrites save file.
+     *
+     * @param tasks Current Tasks in the list.
+     * @param cachedTasks Save file.
+     * @throws DuduException If no duration is given with the /from and /to keywords.
+     */
     @Override
     public void execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
@@ -51,6 +63,11 @@ public class EventCommand implements Command {
         }
     }
 
+    /**
+     * Returns false as it is not an exit command.
+     *
+     * @return False.
+     */
     @Override
     public boolean isExit() {
         return false;
