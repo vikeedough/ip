@@ -34,20 +34,23 @@ public class TodoCommand implements Command {
      *
      * @param tasks Current list of tasks.
      * @param cachedTasks Save file.
+     * @return String containing the Todo task that was added.
      * @throws DuduException If any unexpected error occurs.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
+    public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             validateDescription(description);
             Task todo = new Todo(description.trim());
-            Ui.printContent(tasks.addEntry(todo));
+//            Ui.printContent(tasks.addEntry(todo));
             FileOperation.overwriteFile(cachedTasks, tasks);
+            return tasks.addEntry(todo);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return "An error has occurred.";
     }
 
     /**

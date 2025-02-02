@@ -35,10 +35,11 @@ public class EventCommand implements Command {
      *
      * @param tasks Current Tasks in the list.
      * @param cachedTasks Save file.
+     * @return String containing Event task that was added.
      * @throws DuduException If no duration is given with the /from and /to keywords.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
+    public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             String[] eventParts = description.split("/from | /to", 3);
             if (eventParts.length < 3) {
@@ -55,13 +56,14 @@ public class EventCommand implements Command {
             LocalDateTime parsedTo = DateTimeParser.parseDateTime(eventParts[2].trim());
 
             Task event = new Event(eventParts[0].trim(), parsedFrom, parsedTo);
-            Ui.printContent(tasks.addEntry(event));
             FileOperation.overwriteFile(cachedTasks, tasks);
+            return tasks.addEntry(event);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return "An error occurred.";
     }
 
     /**

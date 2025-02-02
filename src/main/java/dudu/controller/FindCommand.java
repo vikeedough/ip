@@ -26,25 +26,35 @@ public class FindCommand implements Command {
      *
      * @param tasks Current list of tasks.
      * @param cachedTasks Save file.
+     * @return String containing the current list of tasks.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) {
+    public String execute(TaskList tasks, File cachedTasks) {
         int counter = 1;
+        String outputText = "";
         Ui.printLine();
         for (int i = 0; i < tasks.getSize(); i++) {
             Task currTask = tasks.get(i);
             if (currTask.getName().contains(description)) {
                 if (counter == 1) {
                     Ui.printContentWithoutLines("Here are the matching tasks in your list:");
+                    outputText += "Here are the matching tasks in your list:\n";
                 }
-                Ui.printContentWithoutLines(counter + ". " + currTask.toString());
+                Ui.printContentWithoutLines(counter + ". " + currTask);
                 counter++;
+                outputText += counter + ". " + currTask + "\n";
+
             }
         }
         if (counter == 1) {
             Ui.printContentWithoutLines("No tasks found with given keyword.");
         }
         Ui.printLine();
+        if (outputText.isEmpty()){
+            return "No tasks found with given keyword.";
+        } else {
+            return outputText;
+        }
     }
 
     /**

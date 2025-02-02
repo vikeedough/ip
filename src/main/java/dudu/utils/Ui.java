@@ -57,6 +57,44 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Returns the list of commands available to the user.
+     *
+     * @return List of commands.
+     */
+    public static String getCommands() {
+        return "todo <title>\n" +
+                "Adds a ToDo Task to your list.\n\n" +
+
+                "deadline <title> /by <date/time>\n" +
+                "<date/time> is in the format of dd/mm/yyyy hhmm in 24 hour format.\n" +
+                "<date/time> can also be in the format of dd/mm/yyyy.\n" +
+                "Adds a Deadline Task to your list.\n\n" +
+
+                "event <title> /from <date/time> /to <date/time>\n" +
+                "<date/time> is in the format of dd/mm/yyyy hhmm in 24 hour format.\n" +
+                "<date/time> can also be in the format of dd/mm/yyyy.\n" +
+                "Adds an Event Task to your list.\n\n" +
+
+                "list\n" +
+                "Displays your current list of tasks.\n\n" +
+
+                "find <keyword>\n" +
+                "Shows a list of tasks with the given keyword.\n\n" +
+
+                "mark <taskIndex>\n" +
+                "Marks the indicated task as done.\n\n" +
+
+                "unmark <taskIndex>\n" +
+                "Marks the indicated task as not done.\n\n" +
+
+                "help\n" +
+                "Shows the commands available.\n\n" +
+
+                "bye\n" +
+                "Dismisses Dudu.\n";
+    }
+
     /** Prints the Dudu logo. **/
     public static void printDudu() {
         String dudu =

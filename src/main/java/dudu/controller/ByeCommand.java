@@ -10,14 +10,16 @@ import java.io.File;
 public class ByeCommand implements Command {
 
     /**
-     * Prints goodbye message and initiates exit of program.
+     * Returns goodbye message and initiates exit of program.
      *
      * @param tasks Current tasks in the list.
      * @param cachedTasks Tasks saved in the file.
+     * @return Goodbye message.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) {
+    public String execute(TaskList tasks, File cachedTasks) {
         Ui.printExit();
+        return "See you next time!";
     }
 
     /**

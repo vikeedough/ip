@@ -12,25 +12,33 @@ import java.util.ArrayList;
 public class ListCommand implements Command {
 
     /**
-     * Prints the current list of tasks.
+     * Returns the current list of tasks.
      *
      * @param tasks Current list of tasks.
      * @param cachedTasks Save file.
+     * @return Current list of tasks.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) {
+    public String execute(TaskList tasks, File cachedTasks) {
         ArrayList<Task> tasksToPrint = tasks.getAllTasks();
+        String outputText = "";
         Ui.printLine();
         if (tasksToPrint.isEmpty()) {
             Ui.printContent("You have no tasks to show.");
         } else {
             for(int i=0; i < tasksToPrint.size(); i++) {
                 Task curr = tasksToPrint.get(i);
-                String result = (i + 1) + "." + curr;
+                String result = (i + 1) + "." + curr + "\n";
                 Ui.printContentWithoutLines(result);
+                outputText += result;
             }
         }
         Ui.printLine();
+        if (outputText.isEmpty()) {
+            return "You have no tasks to show.";
+        } else {
+            return outputText;
+        }
     }
 
     /**

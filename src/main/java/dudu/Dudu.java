@@ -15,6 +15,7 @@ import java.io.IOException;
 public class Dudu {
 
     private final TaskList tasks;
+    private File cachedTasks;
 
     /** Creates Dudu object. **/
     public Dudu() {
@@ -28,7 +29,7 @@ public class Dudu {
      * @throws IOException If write operations are interrupted.
      */
     public void run() throws DuduException, IOException {
-        File cachedTasks = FileOperation.loadFile();
+        cachedTasks = FileOperation.loadFile();
         FileOperation.readTasksFromFile(cachedTasks, tasks);
 
         Ui.printDudu();
@@ -46,6 +47,25 @@ public class Dudu {
                 Ui.printContentWithoutLines(e.getMessage());
             }
         }
+    }
+
+    public TaskList getTasks() {
+        return tasks;
+    }
+
+    public File getCachedTasks() {
+        return cachedTasks;
+    }
+
+    /**
+     * Retrieves the cached tasks and stores it inside cachedTasks.
+     *
+     * @throws DuduException If unexpected errors are thrown.
+     * @throws IOException If write operations are interrupted.
+     */
+    public void retrieveCachedTasks() throws IOException, DuduException {
+        cachedTasks = FileOperation.loadFile();
+        FileOperation.readTasksFromFile(cachedTasks, tasks);
     }
 
     public static void main(String[] args) {

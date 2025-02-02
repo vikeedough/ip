@@ -9,14 +9,16 @@ import java.io.File;
 public class HelpCommand implements Command {
 
     /**
-     * Prints the list of commands available for the user.
+     * Returns the list of commands available for the user.
      *
      * @param tasks Current list of tasks.
      * @param cachedTasks Save file.
+     * @return List of commands.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) {
+    public String execute(TaskList tasks, File cachedTasks) {
         Ui.printCommands();
+        return Ui.getCommands();
     }
 
     /**

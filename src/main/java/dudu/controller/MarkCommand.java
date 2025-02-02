@@ -33,11 +33,12 @@ public class MarkCommand implements Command{
      *
      * @param tasks Current list of tasks.
      * @param cachedTasks Save file.
+     * @return String containing the task that was marked done.
      * @throws DuduException If task has already been marked as done.
      * @throws IOException If write operation is interrupted.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
+    public String execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
         int index = Integer.parseInt(description) - 1;
         validateIndex(index, tasks);
         Task curr = tasks.get(index);
@@ -46,8 +47,9 @@ public class MarkCommand implements Command{
             String toPrint = "Nice! I've marked this task as done:\n" + curr;
             Ui.printContent(toPrint);
             FileOperation.overwriteFile(cachedTasks, tasks);
+            return toPrint;
         } else {
-            throw new DuduException("Task has already been marked as done!");
+            return "Task has already been marked as done!";
         }
     }
 
