@@ -8,6 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 public interface Command {
-    void execute(TaskList tasks, File cachedTasks) throws DuduException, IOException;
+    String execute(TaskList tasks, File cachedTasks) throws DuduException, IOException;
     boolean isExit();
 }

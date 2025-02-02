@@ -35,10 +35,11 @@ public class DeadlineCommand implements Command {
      *
      * @param tasks Current Tasks in the list.
      * @param cachedTasks Save file.
+     * @return String containing Deadline Task that was added.
      * @throws DuduException If no deadline is given with the /by keyword.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
+    public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             String[] deadlineParts = description.split("/by ");
             if (deadlineParts.length < 2) {
@@ -52,13 +53,14 @@ public class DeadlineCommand implements Command {
             LocalDateTime parsedDateTime = DateTimeParser.parseDateTime(deadlineParts[1].trim());
 
             Task deadline = new Deadline(deadlineParts[0].trim(), parsedDateTime);
-            Ui.printContent(tasks.addEntry(deadline));
             FileOperation.overwriteFile(cachedTasks, tasks);
+            return tasks.addEntry(deadline);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return "An error occurred.";
     }
 
     /**

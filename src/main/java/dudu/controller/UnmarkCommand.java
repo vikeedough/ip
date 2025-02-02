@@ -32,11 +32,12 @@ public class UnmarkCommand implements Command {
      *
      * @param tasks Current list of tasks.
      * @param cachedTasks Save file.
+     * @return String containing the task that was marked not done.
      * @throws DuduException If task has already been marked as not done.
      * @throws IOException If write operation is interrupted.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
+    public String execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
         int index = Integer.parseInt(description) - 1;
         validateIndex(index, tasks);
         Task curr = tasks.get(index);
@@ -45,9 +46,9 @@ public class UnmarkCommand implements Command {
             String toPrint = "Alright, I've marked this task as not done yet:\n" + curr;
             Ui.printContent(toPrint);
             FileOperation.overwriteFile(cachedTasks, tasks);
+            return toPrint;
         } else {
-            throw new DuduException("Task is already marked as not done!");
-
+            return "Task is already marked as not done!";
         }
     }
 

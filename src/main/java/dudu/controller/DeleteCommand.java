@@ -32,20 +32,22 @@ public class DeleteCommand implements Command {
      *
      * @param tasks Current Tasks in the list.
      * @param cachedTasks Save file.
+     * @return String containing task that was deleted.
      * @throws DuduException If task number is out of bounds or file operation does not work.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) throws DuduException {
+    public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             int index = Integer.parseInt(description) - 1;
             validateIndex(index, tasks);
-            Ui.printContent(tasks.deleteTask(index));
             FileOperation.overwriteFile(cachedTasks, tasks);
+            return tasks.deleteTask(index);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return "An error occurred.";
     }
 
     /**

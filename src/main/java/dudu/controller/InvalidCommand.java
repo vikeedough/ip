@@ -9,14 +9,16 @@ import java.io.File;
 public class InvalidCommand implements Command {
 
     /**
-     * Prints invalid command message and advises user to use the 'help' command.
+     * Returns invalid command message and advises user to use the 'help' command.
      *
      * @param tasks Current list of tasks.
      * @param cachedTasks Save file.
+     * @return Invalid command message.
      */
     @Override
-    public void execute(TaskList tasks, File cachedTasks) {
+    public String execute(TaskList tasks, File cachedTasks) {
         Ui.printContentWithoutLines("Invalid command. Enter 'help' for a list of commands.");
+        return "Invalid command. Enter 'help' for a list of commands.";
     }
 
     /**
