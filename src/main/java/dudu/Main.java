@@ -23,6 +23,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinHeight(600);
             stage.setMinWidth(417);
+            stage.setTitle("Dudu Bot");
             fxmlLoader.<MainWindow>getController().setDudu(dudu);
             stage.show();
         } catch (IOException e) {
