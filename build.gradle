@@ -51,7 +51,7 @@ shadowJar {
     archiveFileName = "dudu.jar"
     archiveClassifier = null
     manifest {
-        attributes 'Main-Class': 'dudu.Dudu'
+        attributes 'Main-Class': 'dudu.Launcher'
     }
 }
 
