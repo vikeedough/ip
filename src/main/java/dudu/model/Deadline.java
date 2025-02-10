@@ -13,8 +13,8 @@ public class Deadline extends Task{
     /**
      * Creates Deadline object.
      *
-     * @param name
-     * @param by
+     * @param name Title of the deadline task.
+     * @param by Deadline of the task.
      */
     public Deadline(String name, LocalDateTime by) {
         super(name);
@@ -23,6 +23,17 @@ public class Deadline extends Task{
 
     public LocalDateTime getBy() {
         return this.by;
+    }
+
+    /**
+     * Returns Deadline task in String format for data.txt.
+     *
+     * @param taskType Task type to be displayed.
+     * @param isDone Completion of task to be displayed.
+     * @return String format of task for data.txt.
+     */
+    public String toStringFileFormat(String taskType, String isDone) {
+        return String.format("%s | %s | %s | %s", taskType, isDone, this.getName(), this.getBy());
     }
 
     /**

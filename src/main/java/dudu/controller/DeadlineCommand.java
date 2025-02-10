@@ -30,6 +30,18 @@ public class DeadlineCommand implements Command {
         }
     }
 
+    private void validateDeadlinePartsLength(int length) throws DuduException {
+        if (length < 2) {
+            throw new DuduException("Please enter a deadline using the /by keyword.");
+        }
+    }
+
+    private void validateDeadlineBy(String by) throws DuduException {
+        if (by.isEmpty()) {
+            throw new DuduException("Please enter a deadline using the /by keyword.");
+        }
+    }
+
     /**
      * Adds new Deadline Task to current list and overwrites save file.
      *
@@ -42,17 +54,17 @@ public class DeadlineCommand implements Command {
     public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             String[] deadlineParts = description.split("/by ");
-            if (deadlineParts.length < 2) {
-                throw new DuduException("Please enter a deadline using the /by keyword.");
-            }
-            validateDescription(deadlineParts[0].trim());
-            if (deadlineParts[1].trim().isEmpty()) {
-                throw new DuduException("Please enter a deadline using the /by keyword.");
-            }
+            int deadlinePartsLength = deadlineParts.length;
+            String deadlineTitle = deadlineParts[0].trim();
+            String deadlineBy = deadlineParts[1].trim();
 
-            LocalDateTime parsedDateTime = DateTimeParser.parseDateTime(deadlineParts[1].trim());
+            validateDeadlinePartsLength(deadlinePartsLength);
+            validateDescription(deadlineTitle);
+            validateDeadlineBy(deadlineBy);
 
-            Task deadline = new Deadline(deadlineParts[0].trim(), parsedDateTime);
+            LocalDateTime parsedDateTime = DateTimeParser.parseDateTime(deadlineBy);
+
+            Task deadline = new Deadline(deadlineTitle, parsedDateTime);
             FileOperation.overwriteFile(cachedTasks, tasks);
             return tasks.addEntry(deadline);
         } catch (DuduException e) {

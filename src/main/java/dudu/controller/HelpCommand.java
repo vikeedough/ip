@@ -17,7 +17,6 @@ public class HelpCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, File cachedTasks) {
-        Ui.printCommands();
         return Ui.getCommands();
     }
 

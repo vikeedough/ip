@@ -34,6 +34,18 @@ public class Event extends Task{
     }
 
     /**
+     * Returns Event task in String format for data.txt.
+     *
+     * @param taskType Task type to be displayed.
+     * @param isDone Completion of task to be displayed.
+     * @return String format of task for data.txt.
+     */
+    public String toStringFileFormat(String taskType, String isDone) {
+        return String.format("%s | %s | %s | %s | %s", taskType, isDone, this.getName(),
+                this.getFrom(), this.getTo());
+    }
+
+    /**
      * Returns event task in String format.
      *
      * @return Line with status, title and duration of task.
