@@ -60,6 +60,7 @@ public class TaskList {
      * @return String containing task to be deleted and the current number of tasks in the list.
      */
     public String deleteTask(int index) {
+        assert index > 0;
         Task curr = this.tasks.get(index);
         this.tasks.remove(index);
         return "Alright! I've deleted this task:\n" + curr.toString() + printNumberOfTasks();

@@ -42,7 +42,6 @@ public class TodoCommand implements Command {
         try {
             validateDescription(description);
             Task todo = new Todo(description.trim());
-//            Ui.printContent(tasks.addEntry(todo));
             FileOperation.overwriteFile(cachedTasks, tasks);
             return tasks.addEntry(todo);
         } catch (DuduException e) {

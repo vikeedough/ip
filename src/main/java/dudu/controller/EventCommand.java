@@ -63,7 +63,8 @@ public class EventCommand implements Command {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "An error occurred.";
+        return "Please enter a duration for this event " +
+                "using the /from and /to keywords.";
     }
 
     /**

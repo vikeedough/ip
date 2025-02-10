@@ -60,7 +60,7 @@ public class DeadlineCommand implements Command {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "An error occurred.";
+        return "Please enter a deadline using the /by keyword.";
     }
 
     /**
