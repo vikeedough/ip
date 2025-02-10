@@ -16,6 +16,7 @@ public class DateTimeParser {
      * @throws DuduException If date and time given is in the incorrect format.
      */
     public static LocalDateTime parseDateTime(String input) throws DuduException {
+        assert input != null;
         DateTimeFormatter formatter;
         LocalDateTime dateTime;
 

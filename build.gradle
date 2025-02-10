@@ -42,6 +42,10 @@ test {
     }
 }
 
+run {
+    enableAssertions = true
+}
+
 application {
     mainClass.set("dudu.Launcher")
 }
