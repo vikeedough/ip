@@ -40,10 +40,12 @@ public class TodoCommand implements Command {
     @Override
     public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
+            String outputString;
             validateDescription(description);
             Task todo = new Todo(description.trim());
+            outputString = tasks.addEntry(todo);
             FileOperation.overwriteFile(cachedTasks, tasks);
-            return tasks.addEntry(todo);
+            return outputString;
         } catch (DuduException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {

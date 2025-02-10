@@ -2,6 +2,7 @@ package dudu.model;
 
 import dudu.utils.DateTimeParser;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -31,6 +32,25 @@ public class Event extends Task{
 
     public LocalDateTime getTo() {
         return this.to;
+    }
+
+    /**
+     * Returns true if the target date falls within the duration of this event task.
+     *
+     * @param targetDate Date of day to be viewed.
+     * @return True if target date is same day as day to be viewed.
+     */
+    public boolean isWithinDuration(LocalDateTime targetDate) {
+        LocalDate fromLocalDate = from.toLocalDate();
+        LocalDate toLocalDate = to.toLocalDate();
+        LocalDate targetLocalDate = targetDate.toLocalDate();
+
+        boolean sameStartDate = targetLocalDate.equals(fromLocalDate);
+        boolean afterStartDate = targetLocalDate.isAfter(fromLocalDate);
+        boolean sameEndDate = targetLocalDate.equals(toLocalDate);
+        boolean beforeEndDate = targetLocalDate.isBefore(toLocalDate);
+
+        return (sameStartDate || afterStartDate) && (sameEndDate || beforeEndDate);
     }
 
     /**

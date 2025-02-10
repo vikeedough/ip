@@ -59,6 +59,7 @@ public class EventCommand implements Command {
             String eventTitle = eventParts[0];
             String eventFrom = eventParts[1].trim();
             String eventTo = eventParts[2].trim();
+            String outputString;
 
             validateEventPartsLength(eventPartsLength);
             validateTitle(eventTitle);
@@ -68,8 +69,9 @@ public class EventCommand implements Command {
             LocalDateTime parsedTo = DateTimeParser.parseDateTime(eventTo);
 
             Task event = new Event(eventTitle, parsedFrom, parsedTo);
+            outputString = tasks.addEntry(event);
             FileOperation.overwriteFile(cachedTasks, tasks);
-            return tasks.addEntry(event);
+            return outputString;
         } catch (DuduException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {

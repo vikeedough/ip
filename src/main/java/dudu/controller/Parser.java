@@ -7,6 +7,7 @@ public class Parser {
     private static final String TODO = "todo";
     private static final String DEADLINE = "deadline";
     private static final String EVENT = "event";
+    private static final String SCHEDULE = "schedule";
     private static final String FIND = "find";
     private static final String DELETE = "delete";
     private static final String HELP = "help";
@@ -36,6 +37,8 @@ public class Parser {
             return new DeadlineCommand(description);
         case EVENT:
             return new EventCommand(description);
+        case SCHEDULE:
+            return new ScheduleCommand(description);
         case FIND:
             return new FindCommand(description);
         case DELETE:

@@ -1,6 +1,11 @@
 package dudu.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import dudu.controller.FileOperation;
+import dudu.utils.DuduException;
 
 public class TaskList {
     /** Current list of tasks **/
@@ -18,7 +23,7 @@ public class TaskList {
      * @return String containing entry added and the current number of tasks in the list.
      */
 
-    public String addEntry(Task task) {
+    public String addEntry(Task task) throws DuduException, IOException {
         this.tasks.add(task);
         return "Alright! I've added this task:\n" + task.toString() + printNumberOfTasks();
     }
