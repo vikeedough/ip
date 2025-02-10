@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileOperation {
@@ -124,7 +125,7 @@ public class FileOperation {
      * @throws FileNotFoundException If save file is not found.
      * @throws DuduException If invalid data is received from the save file.
      */
-    public static void readTasksFromFile(File file, TaskList tasks) throws FileNotFoundException, DuduException {
+    public static void readTasksFromFile(File file, TaskList tasks) throws IOException, DuduException {
         Scanner sc = new Scanner(file);
         while (sc.hasNextLine()) {
             String currLine = sc.nextLine();

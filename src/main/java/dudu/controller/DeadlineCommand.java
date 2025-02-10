@@ -57,6 +57,7 @@ public class DeadlineCommand implements Command {
             int deadlinePartsLength = deadlineParts.length;
             String deadlineTitle = deadlineParts[0].trim();
             String deadlineBy = deadlineParts[1].trim();
+            String outputString;
 
             validateDeadlinePartsLength(deadlinePartsLength);
             validateDescription(deadlineTitle);
@@ -65,8 +66,9 @@ public class DeadlineCommand implements Command {
             LocalDateTime parsedDateTime = DateTimeParser.parseDateTime(deadlineBy);
 
             Task deadline = new Deadline(deadlineTitle, parsedDateTime);
+            outputString = tasks.addEntry(deadline);
             FileOperation.overwriteFile(cachedTasks, tasks);
-            return tasks.addEntry(deadline);
+            return outputString;
         } catch (DuduException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {

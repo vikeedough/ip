@@ -1,4 +1,7 @@
 T | Done | Yo Mama
 T | Not Done | CS2109S Tutorial
 D | Not Done | SPH3107 Quiz | 2025-02-13T23:59
-E | Not Done | Blood Donation  | 2025-02-11T10:00 | 2025-02-11T12:00
+E | Not Done | Blood Donation | 2025-02-11T10:00 | 2025-02-11T12:00
+T | Not Done | Week 1
+D | Not Done | CS2109S Tutorial | 2025-02-14T00:00
+E | Done | Week 5 | 2025-02-10T00:00 | 2025-02-16T00:00

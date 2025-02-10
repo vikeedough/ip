@@ -26,6 +26,16 @@ public class Deadline extends Task{
     }
 
     /**
+     * Returns true if target date is the same date as the current date.
+     *
+     * @param targetDate Date of day to be viewed.
+     * @return True if target date is same day as day to be viewed.
+     */
+    public boolean isOnSameDay(LocalDateTime targetDate) {
+        return by.toLocalDate().equals(targetDate.toLocalDate());
+    }
+
+    /**
      * Returns Deadline task in String format for data.txt.
      *
      * @param taskType Task type to be displayed.
