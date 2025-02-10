@@ -30,26 +30,20 @@ public class FindCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, File cachedTasks) {
-        int counter = 1;
+        int taskCounter = 1;
         String outputText = "";
-        Ui.printLine();
         for (int i = 0; i < tasks.getSize(); i++) {
             Task currTask = tasks.get(i);
-            if (currTask.getName().contains(description)) {
-                if (counter == 1) {
-                    Ui.printContentWithoutLines("Here are the matching tasks in your list:");
+            String taskName = currTask.getName();
+
+            if (taskName.contains(description)) {
+                if (taskCounter == 1) {
                     outputText += "Here are the matching tasks in your list:\n";
                 }
-                Ui.printContentWithoutLines(counter + ". " + currTask);
-                counter++;
-                outputText += counter + ". " + currTask + "\n";
-
+                outputText += taskCounter + ". " + currTask + "\n";
+                taskCounter++;
             }
         }
-        if (counter == 1) {
-            Ui.printContentWithoutLines("No tasks found with given keyword.");
-        }
-        Ui.printLine();
         if (outputText.isEmpty()){
             return "No tasks found with given keyword.";
         } else {

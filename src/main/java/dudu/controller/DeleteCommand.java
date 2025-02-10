@@ -38,10 +38,11 @@ public class DeleteCommand implements Command {
     @Override
     public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
-            int index = Integer.parseInt(description) - 1;
-            validateIndex(index, tasks);
+            int taskIndex;
+            taskIndex = Integer.parseInt(description) - 1;
+            validateIndex(taskIndex, tasks);
             FileOperation.overwriteFile(cachedTasks, tasks);
-            return tasks.deleteTask(index);
+            return tasks.deleteTask(taskIndex);
         } catch (DuduException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {

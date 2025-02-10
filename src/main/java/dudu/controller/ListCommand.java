@@ -3,7 +3,6 @@ package dudu.controller;
 import dudu.model.Task;
 import dudu.model.TaskList;
 
-import dudu.utils.DuduException;
 import dudu.utils.Ui;
 
 import java.io.File;
@@ -21,19 +20,18 @@ public class ListCommand implements Command {
     @Override
     public String execute(TaskList tasks, File cachedTasks) {
         ArrayList<Task> tasksToPrint = tasks.getAllTasks();
-        String outputText = "";
-        Ui.printLine();
+
         if (tasksToPrint.isEmpty()) {
-            Ui.printContent("You have no tasks to show.");
-        } else {
-            for(int i=0; i < tasksToPrint.size(); i++) {
-                Task curr = tasksToPrint.get(i);
-                String result = (i + 1) + "." + curr + "\n";
-                Ui.printContentWithoutLines(result);
-                outputText += result;
-            }
+            return "You have no tasks to show.";
         }
-        Ui.printLine();
+
+        String outputText = "";
+        for (int i = 0; i < tasksToPrint.size(); i++) {
+            Task curr = tasksToPrint.get(i);
+            String result = (i + 1) + "." + curr + "\n";
+            outputText += result;
+        }
+
         if (outputText.isEmpty()) {
             return "You have no tasks to show.";
         } else {

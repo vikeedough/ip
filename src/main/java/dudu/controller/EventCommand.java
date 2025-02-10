@@ -24,9 +24,22 @@ public class EventCommand implements Command {
         this.description = description;
     }
 
-    private static void validateDescription(String input) throws DuduException {
+    private static void validateTitle(String input) throws DuduException {
         if (input.trim().isEmpty()) {
-            throw new DuduException("The description of a task cannot be empty.");
+            throw new DuduException("The title of a task cannot be empty.");
+        }
+    }
+
+    private void validateEventPartsLength(int length) throws DuduException {
+        if (length < 3) {
+            throw new DuduException("Please enter a duration for this event " +
+                    "using the /from and /to keywords.");
+        }
+    }
+
+    private void validateEventFromTo(String from, String to) throws DuduException {
+        if (from.isEmpty() || to.isEmpty()) {
+            throw new DuduException("Please enter a duration for this event using the /from and /to keywords.");
         }
     }
 
@@ -42,20 +55,19 @@ public class EventCommand implements Command {
     public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             String[] eventParts = description.split("/from | /to", 3);
-            if (eventParts.length < 3) {
-                throw new DuduException("Please enter a duration for this event " +
-                        "using the /from and /to keywords.");
-            }
+            int eventPartsLength = eventParts.length;
+            String eventTitle = eventParts[0];
+            String eventFrom = eventParts[1].trim();
+            String eventTo = eventParts[2].trim();
 
-            validateDescription(eventParts[0]);
-            if (eventParts[1].trim().isEmpty() || eventParts[2].trim().isEmpty()) {
-                throw new DuduException("Please enter a duration for this event using the /from and /to keywords.");
-            }
+            validateEventPartsLength(eventPartsLength);
+            validateTitle(eventTitle);
+            validateEventFromTo(eventFrom, eventTo);
 
-            LocalDateTime parsedFrom = DateTimeParser.parseDateTime(eventParts[1].trim());
-            LocalDateTime parsedTo = DateTimeParser.parseDateTime(eventParts[2].trim());
+            LocalDateTime parsedFrom = DateTimeParser.parseDateTime(eventFrom);
+            LocalDateTime parsedTo = DateTimeParser.parseDateTime(eventTo);
 
-            Task event = new Event(eventParts[0].trim(), parsedFrom, parsedTo);
+            Task event = new Event(eventTitle, parsedFrom, parsedTo);
             FileOperation.overwriteFile(cachedTasks, tasks);
             return tasks.addEntry(event);
         } catch (DuduException e) {

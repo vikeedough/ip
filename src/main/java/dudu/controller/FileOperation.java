@@ -40,6 +40,46 @@ public class FileOperation {
         return file;
     }
 
+    private static void validateTaskLength(String taskType, int length) throws DuduException {
+
+        boolean isDeadline = taskType.equals("D");
+        boolean isEvent = taskType.equals("E");
+        boolean isInvalidDeadlineLength = length < 4;
+        boolean isInvalidEventLength = length < 5;
+        boolean isInvalidDeadline = isDeadline && isInvalidDeadlineLength;
+        boolean isInvalidEvent = isEvent && isInvalidEventLength;
+
+        if (isInvalidDeadline) {
+            throw new DuduException("Invalid data for Deadline task in file.");
+        } else if (isInvalidEvent) {
+            throw new DuduException("Invalid data for Event task in file.");
+        }
+    }
+
+    private static void toggleTask(Task task, String done) {
+        if (done.equals("Done")) {
+            task.toggleDone();
+        }
+    }
+
+    private static Task handleTodo(String name, String done) {
+        Todo todo = new Todo(name);
+        toggleTask(todo, done);
+        return todo;
+    }
+
+    private static Task handleDeadline(String name, String done, LocalDateTime by) {
+        Deadline deadline = new Deadline(name, by);
+        toggleTask(deadline, done);
+        return deadline;
+    }
+
+    private static Task handleEvent(String name, String done, LocalDateTime from, LocalDateTime to) {
+        Event event = new Event(name, from, to);
+        toggleTask(event, done);
+        return event;
+    }
+
     /**
      * Parses a line from the save file and adds it to the current list of tasks.
      *
@@ -49,8 +89,9 @@ public class FileOperation {
      */
     public static Task parseFile(String line) throws DuduException {
         String[] parts = line.split("\\|");
+        int partsLength = parts.length;
 
-        for (int i = 0; i < parts.length; i++) {
+        for (int i = 0; i < partsLength; i++) {
             parts[i] = parts[i].trim();
         }
 
@@ -60,32 +101,16 @@ public class FileOperation {
 
         switch (task) {
         case "T":
-            Todo todo = new Todo(name);
-            if (done.equals("Done")) {
-                todo.toggleDone();
-            }
-            return todo;
+            return handleTodo(name, done);
         case "D":
-            if (parts.length < 4) {
-                throw new DuduException("Invalid data for Deadline task in file.");
-            }
+            validateTaskLength("D", partsLength);
             LocalDateTime by = DateTimeParser.parseFromFile(parts[3].trim());
-            Deadline deadline = new Deadline(name, by);
-            if (done.equals("Done")) {
-                deadline.toggleDone();
-            }
-            return deadline;
+            return handleDeadline(name, done, by);
         case "E":
-            if (parts.length < 5) {
-                throw new DuduException("Invalid data for Event task in file.");
-            }
+            validateTaskLength("E", partsLength);
             LocalDateTime from = DateTimeParser.parseFromFile(parts[3].trim());
             LocalDateTime to = DateTimeParser.parseFromFile(parts[4].trim());
-            Event event = new Event(name, from, to);
-            if (done.equals("Done")) {
-                event.toggleDone();
-            }
-            return event;
+            return handleEvent(name, done, from, to);
         default:
             throw new DuduException("Unknown task type in file: " + task);
         }
@@ -124,12 +149,11 @@ public class FileOperation {
         String isDone = task.getIsDone() ? "Done" : "Not Done";
 
         if (task instanceof Deadline) {
-            return String.format("%s | %s | %s | %s", taskType, isDone, task.getName(), ((Deadline) task).getBy());
+            return ((Deadline) task).toStringFileFormat(taskType, isDone);
         } else if (task instanceof Event) {
-            return String.format("%s | %s | %s | %s | %s", taskType, isDone, task.getName(),
-                    ((Event) task).getFrom(), ((Event) task).getTo());
+            return ((Event) task).toStringFileFormat(taskType, isDone);
         } else {
-            return String.format("%s | %s | %s", taskType, isDone, task.getName());
+            return ((Todo) task).toStringFileFormat(taskType, isDone);
         }
     }
 

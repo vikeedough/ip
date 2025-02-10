@@ -39,13 +39,16 @@ public class MarkCommand implements Command{
      */
     @Override
     public String execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
-        int index = Integer.parseInt(description) - 1;
-        validateIndex(index, tasks);
-        Task curr = tasks.get(index);
-        if (!curr.getIsDone()) {
+        int taskIndex;
+        boolean taskIsDone;
+        taskIndex = Integer.parseInt(description) - 1;
+        validateIndex(taskIndex, tasks);
+
+        Task curr = tasks.get(taskIndex);
+        taskIsDone = curr.getIsDone();
+        if (!taskIsDone) {
             curr.toggleDone();
             String toPrint = "Nice! I've marked this task as done:\n" + curr;
-            Ui.printContent(toPrint);
             FileOperation.overwriteFile(cachedTasks, tasks);
             return toPrint;
         } else {

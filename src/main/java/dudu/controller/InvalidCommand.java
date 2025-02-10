@@ -17,7 +17,6 @@ public class InvalidCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, File cachedTasks) {
-        Ui.printContentWithoutLines("Invalid command. Enter 'help' for a list of commands.");
         return "Invalid command. Enter 'help' for a list of commands.";
     }
 

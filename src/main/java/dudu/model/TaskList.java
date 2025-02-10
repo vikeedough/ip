@@ -50,7 +50,7 @@ public class TaskList {
         String isPlural = this.tasks.size() != 1
                           ? " tasks in the list."
                           : " task in the list.";
-        return "\nNow you have " + String.valueOf(this.tasks.size()) + isPlural;
+        return "\nNow you have " + this.tasks.size() + isPlural;
     }
 
     /**
