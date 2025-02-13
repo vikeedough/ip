@@ -1,26 +1,32 @@
-# Duke project template
+# Dudu :bear:
+> "Dudu helps me keep track of my everyday tasks!" - David Vicedo
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Here is a list of things that Dudu can help you with:
+- **Add** a task
+- **View** your current list of tasks
+- **Mark** a task as completed
+- **Delete** a task
 
-## Setting up in Intellij
+There are three different types of Tasks that Dudu recognizes!
+1. _Todo_ Tasks
+2. _Deadline_ Tasks (Create a deadline for this task by using the /by keyword!)
+3. _Event_ Tasks (Indicate a duration that this task will have by using the /from and /to keywords!)
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+What Dudu could possibly show you:
+- [x] Read up on CS2103T Topics
+- [x] CS2103T Tutorial (by: Feb 5 2025)
+- [x] CS2103T ip Week 3 (from: Jan 28 2025, 3:00 pm to: Jan 31 2025, 4:00 pm)
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+Download [Dudu](https://github.com/vikeedough/ip/releases/tag/A-JavaDoc) and try him out yourself!
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+
+Here is the `main` method of Dudu:
+```java
+public static void main(String[] args) {
+    Dudu dudu = new Dudu();
+    try {
+        dudu.run();
+    } catch (DuduException | IOException e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+}
