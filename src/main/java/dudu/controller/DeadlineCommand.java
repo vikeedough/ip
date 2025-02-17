@@ -54,12 +54,13 @@ public class DeadlineCommand implements Command {
     public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             String[] deadlineParts = description.split("/by ");
+
             int deadlinePartsLength = deadlineParts.length;
+            validateDeadlinePartsLength(deadlinePartsLength);
             String deadlineTitle = deadlineParts[0].trim();
             String deadlineBy = deadlineParts[1].trim();
             String outputString;
 
-            validateDeadlinePartsLength(deadlinePartsLength);
             validateDescription(deadlineTitle);
             validateDeadlineBy(deadlineBy);
 
@@ -70,11 +71,10 @@ public class DeadlineCommand implements Command {
             FileOperation.overwriteFile(cachedTasks, tasks);
             return outputString;
         } catch (DuduException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "Please enter a deadline using the /by keyword.";
     }
 
     /**

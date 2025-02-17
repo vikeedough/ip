@@ -39,16 +39,17 @@ public class DeleteCommand implements Command {
     public String execute(TaskList tasks, File cachedTasks) throws DuduException {
         try {
             int taskIndex;
+            String deleteMessage;
             taskIndex = Integer.parseInt(description) - 1;
             validateIndex(taskIndex, tasks);
+            deleteMessage = tasks.deleteTask(taskIndex);
             FileOperation.overwriteFile(cachedTasks, tasks);
-            return tasks.deleteTask(taskIndex);
+            return deleteMessage;
         } catch (DuduException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "An error occurred.";
     }
 
     /**

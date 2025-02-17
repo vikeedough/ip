@@ -56,14 +56,16 @@ public class EventCommand implements Command {
         try {
             String[] eventParts = description.split("/from | /to", 3);
             int eventPartsLength = eventParts.length;
+            validateEventPartsLength(eventPartsLength);
+
             String eventTitle = eventParts[0];
+            validateTitle(eventTitle);
+
             String eventFrom = eventParts[1].trim();
             String eventTo = eventParts[2].trim();
-            String outputString;
-
-            validateEventPartsLength(eventPartsLength);
-            validateTitle(eventTitle);
             validateEventFromTo(eventFrom, eventTo);
+
+            String outputString;
 
             LocalDateTime parsedFrom = DateTimeParser.parseDateTime(eventFrom);
             LocalDateTime parsedTo = DateTimeParser.parseDateTime(eventTo);
@@ -73,12 +75,10 @@ public class EventCommand implements Command {
             FileOperation.overwriteFile(cachedTasks, tasks);
             return outputString;
         } catch (DuduException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "Please enter a duration for this event " +
-                "using the /from and /to keywords.";
     }
 
     /**

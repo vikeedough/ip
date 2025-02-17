@@ -38,21 +38,26 @@ public class UnmarkCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
-        int taskIndex;
-        boolean taskIsDone;
-        taskIndex = Integer.parseInt(description) - 1;
-        validateIndex(taskIndex, tasks);
+        try {
+            int taskIndex;
+            boolean taskIsDone;
+            taskIndex = Integer.parseInt(description) - 1;
+            validateIndex(taskIndex, tasks);
 
-        Task curr = tasks.get(taskIndex);
-        taskIsDone = curr.getIsDone();
-        if (taskIsDone) {
-            curr.toggleDone();
-            String toPrint = "Alright, I've marked this task as not done yet:\n" + curr;
-            FileOperation.overwriteFile(cachedTasks, tasks);
-            return toPrint;
-        } else {
-            return "Task is already marked as not done!";
+            Task curr = tasks.get(taskIndex);
+            taskIsDone = curr.getIsDone();
+            if (taskIsDone) {
+                curr.toggleDone();
+                String toPrint = "Alright, I've marked this task as not done yet:\n" + curr;
+                FileOperation.overwriteFile(cachedTasks, tasks);
+                return toPrint;
+            } else {
+                return "Task is already marked as not done!";
+            }
+        } catch (DuduException e) {
+            return e.getMessage();
         }
+
     }
 
     /**

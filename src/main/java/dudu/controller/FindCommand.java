@@ -34,9 +34,10 @@ public class FindCommand implements Command {
         String outputText = "";
         for (int i = 0; i < tasks.getSize(); i++) {
             Task currTask = tasks.get(i);
-            String taskName = currTask.getName();
+            String taskName = currTask.getName().toLowerCase();
+            String searchInput = description.toLowerCase();
 
-            if (taskName.contains(description)) {
+            if (taskName.contains(searchInput)) {
                 if (taskCounter == 1) {
                     outputText += "Here are the matching tasks in your list:\n";
                 }

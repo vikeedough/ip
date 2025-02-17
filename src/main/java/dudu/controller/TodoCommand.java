@@ -47,11 +47,10 @@ public class TodoCommand implements Command {
             FileOperation.overwriteFile(cachedTasks, tasks);
             return outputString;
         } catch (DuduException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "An error has occurred.";
     }
 
     /**

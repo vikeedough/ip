@@ -1,5 +1,6 @@
 package dudu.controller;
 
+import dudu.Dudu;
 import dudu.model.Task;
 import dudu.model.TaskList;
 
@@ -39,21 +40,27 @@ public class MarkCommand implements Command{
      */
     @Override
     public String execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
-        int taskIndex;
-        boolean taskIsDone;
-        taskIndex = Integer.parseInt(description) - 1;
-        validateIndex(taskIndex, tasks);
+        try {
+            int taskIndex;
+            boolean taskIsDone;
+            taskIndex = Integer.parseInt(description) - 1;
+            validateIndex(taskIndex, tasks);
 
-        Task curr = tasks.get(taskIndex);
-        taskIsDone = curr.getIsDone();
-        if (!taskIsDone) {
-            curr.toggleDone();
-            String toPrint = "Nice! I've marked this task as done:\n" + curr;
-            FileOperation.overwriteFile(cachedTasks, tasks);
-            return toPrint;
-        } else {
-            return "Task has already been marked as done!";
+            Task curr = tasks.get(taskIndex);
+            taskIsDone = curr.getIsDone();
+            if (!taskIsDone) {
+                curr.toggleDone();
+                String toPrint = "Nice! I've marked this task as done:\n" + curr;
+                FileOperation.overwriteFile(cachedTasks, tasks);
+                return toPrint;
+            } else {
+                return "Task has already been marked as done!";
+            }
+        } catch (DuduException e) {
+            return e.getMessage();
         }
+
+
     }
 
     /**
