@@ -47,7 +47,10 @@ public class DeleteCommand implements Command {
             return deleteMessage;
         } catch (DuduException e) {
             return e.getMessage();
-        } catch (IOException e) {
+        } catch (NumberFormatException e) {
+            return "Invalid task number! Please enter a valid task number.";
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
