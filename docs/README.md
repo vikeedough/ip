@@ -1,4 +1,4 @@
-# Dudu :bear:
+# Dudu
 
 Dudu is a simple command-line task manager that helps you organize your tasks efficiently. With Dudu, you can add different types of tasks, list them, search for specific ones, and manage their completion status easily.
 
