@@ -1,11 +1,9 @@
 package dudu.controller;
 
-import dudu.Dudu;
 import dudu.model.Task;
 import dudu.model.TaskList;
 
 import dudu.utils.DuduException;
-import dudu.utils.Ui;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,13 +40,13 @@ public class MarkCommand implements Command{
     public String execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
         try {
             int taskIndex;
-            boolean taskIsDone;
+            boolean isMarkedDone;
             taskIndex = Integer.parseInt(description) - 1;
             validateIndex(taskIndex, tasks);
 
             Task curr = tasks.get(taskIndex);
-            taskIsDone = curr.getIsDone();
-            if (!taskIsDone) {
+            isMarkedDone = curr.getIsDone();
+            if (!isMarkedDone) {
                 curr.toggleDone();
                 String toPrint = "Nice! I've marked this task as done:\n" + curr;
                 FileOperation.overwriteFile(cachedTasks, tasks);

@@ -40,13 +40,13 @@ public class UnmarkCommand implements Command {
     public String execute(TaskList tasks, File cachedTasks) throws DuduException, IOException {
         try {
             int taskIndex;
-            boolean taskIsDone;
+            boolean isMarkedDone;
             taskIndex = Integer.parseInt(description) - 1;
             validateIndex(taskIndex, tasks);
 
             Task curr = tasks.get(taskIndex);
-            taskIsDone = curr.getIsDone();
-            if (taskIsDone) {
+            isMarkedDone = curr.getIsDone();
+            if (isMarkedDone) {
                 curr.toggleDone();
                 String toPrint = "Alright, I've marked this task as not done yet:\n" + curr;
                 FileOperation.overwriteFile(cachedTasks, tasks);
