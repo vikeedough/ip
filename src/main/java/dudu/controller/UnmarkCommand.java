@@ -56,6 +56,8 @@ public class UnmarkCommand implements Command {
             }
         } catch (DuduException e) {
             return e.getMessage();
+        } catch (NumberFormatException e) {
+            return "Invalid task number! Please enter a valid task number.";
         }
 
     }

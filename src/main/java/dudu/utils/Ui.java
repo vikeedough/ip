@@ -56,6 +56,9 @@ public class Ui {
                 "unmark <taskIndex>\n" +
                 "Marks the indicated task as not done.\n\n" +
 
+                "delete <taskIndex>\n" +
+                "Deletes the indicated task.\n\n" +
+
                 "help\n" +
                 "Shows the commands available.\n\n" +
 
