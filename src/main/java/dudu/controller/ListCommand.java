@@ -25,18 +25,14 @@ public class ListCommand implements Command {
             return "You have no tasks to show.";
         }
 
-        String outputText = "";
+        String outputText = "Here are your current list of tasks!\n\n";
         for (int i = 0; i < tasksToPrint.size(); i++) {
             Task curr = tasksToPrint.get(i);
-            String result = (i + 1) + "." + curr + "\n";
+            String result = (i + 1) + ". " + curr + "\n";
             outputText += result;
         }
 
-        if (outputText.isEmpty()) {
-            return "You have no tasks to show.";
-        } else {
-            return outputText;
-        }
+        return outputText;
     }
 
     /**
