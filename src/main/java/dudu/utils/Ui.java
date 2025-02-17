@@ -21,42 +21,6 @@ public class Ui {
                 "--------------------------------");
     }
 
-    /** Prints the list of commands available to the user. **/
-    public static void printCommands() {
-        printLine();
-        System.out.println("todo <title>");
-        System.out.println("Adds a ToDo Task to your list.");
-        printLine();
-        System.out.println("deadline <title> /by <date/time>");
-        System.out.println("<date/time> is in the format of dd/mm/yyyy hhmm in 24 hour format.");
-        System.out.println("<date/time> can also be in the format of dd/mm/yyyy.");
-        System.out.println("Adds a Deadline Task to your list.");
-        printLine();
-        System.out.println("event <title> /from <date/time> /to <date/time>");
-        System.out.println("<date/time> is in the format of dd/mm/yyyy hhmm in 24 hour format.");
-        System.out.println("<date/time> can also be in the format of dd/mm/yyyy.");
-        System.out.println("Adds an Event Task to your list.");
-        printLine();
-        System.out.println("list");
-        System.out.println("Displays your current list of tasks.");
-        printLine();
-        System.out.println("find <keyword>");
-        System.out.println("Shows a list of tasks with the given keyword.");
-        printLine();
-        System.out.println("mark <taskIndex>");
-        System.out.println("Marks the indicated task as done.");
-        printLine();
-        System.out.println("unmark <taskIndex>");
-        System.out.println("Marks the indicated task as not done.");
-        printLine();
-        System.out.println("help");
-        System.out.println("Shows the commands available.");
-        printLine();
-        System.out.println("bye");
-        System.out.println("Dismisses Dudu.");
-        printLine();
-    }
-
     /**
      * Returns the list of commands available to the user.
      *
@@ -81,6 +45,10 @@ public class Ui {
 
                 "find <keyword>\n" +
                 "Shows a list of tasks with the given keyword.\n\n" +
+
+                "schedule <date>\n" +
+                "Shows a list of tasks on the given date.\n" +
+                "<date> is in the format of dd/mm/yyyy.\n\n" +
 
                 "mark <taskIndex>\n" +
                 "Marks the indicated task as done.\n\n" +
